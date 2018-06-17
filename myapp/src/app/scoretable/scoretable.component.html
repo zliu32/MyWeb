@@ -1,0 +1,34 @@
+<div style="width: 500px;margin: 0 auto">
+  <div>
+      <span style="text-align: center;display:block;">小烨烨买包积分器</span>
+        <span style="text-align: right;display:block;">{{ titleDate }}</span>
+  </div>
+  <table class = "table">
+    <thead>
+      <tr>
+        <th *ngFor="let key of keys">{{ key }}</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of records; let in = index">
+        <td *ngFor="let key of keys">{{ record[key] }}</td>
+        <td>
+        <form >
+          <input type="radio" [(ngModel)]="model[in]" name="sex" [value]=1>Yes
+          <input type="radio" [(ngModel)]="model[in]" name="sex" [value]=0 [disabled]="disableSelection">No
+        </form>
+        </td>
+      </tr>
+    </tbody> 
+  </table>
+  <div style="align-self: auto;">
+      <button type="button" (click)="submitTable()">Submit</button>
+      <button type="button" (click)="checkScore()">Check Score</button>
+      <button type="button" (click)="previous()">Prev</button>
+      <button type="button" (click)="next()">Next</button>
+      <div *ngIf="showSuccess" style="color:green">Your submission has been saved</div>
+      <div *ngIf="showFail" style="color:crimson">There was some error during saving</div>
+      <h1 *ngIf="showScore" style="color:brown">Your total score is {{ totalScore }}</h1>
+  </div>   
+</div>
