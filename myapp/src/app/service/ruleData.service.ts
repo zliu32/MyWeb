@@ -7,10 +7,13 @@ import { ruleInfo, requestInfo } from "../entity/userInterface";
 @Injectable()
 export class RuleService{
 
-    urlPrefix:string
+    urlPrefix:string;
+    request:RequestOptions;
 
     constructor(private http: Http,){
-        this.urlPrefix = global.urlGlobal;
+        this.urlPrefix = global.urlLocal;
+        let headers = new Headers({'Content-Type': 'application/json'});
+        this.request = new RequestOptions({headers:headers});
     }
     
 
@@ -20,23 +23,18 @@ export class RuleService{
     }
 
     saveRuleStat(info:ruleInfo) {
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let request = new RequestOptions({headers:headers});
+
         let url = this.urlPrefix + "/api/rulestat/save";
-        return this.http.post(url, JSON.stringify(info), request).map(res => res.json())
+        return this.http.post(url, JSON.stringify(info), this.request).map(res => res.json())
     }
 
     getUserScore(username : string){
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let request = new RequestOptions({headers:headers});
         let url = this.urlPrefix + "/api/rulestat/countScore";
-        return this.http.post(url, username, request).map(res => res.json())
+        return this.http.post(url, username, this.request).map(res => res.json())
     }
 
     findRuleState(info:requestInfo){
-        let headers = new Headers({'Content-Type': 'application/json'});
-        let request = new RequestOptions({headers:headers});
         let url = this.urlPrefix + "/api/rulestat/fetchStat";
-        return this.http.post(url, info, request).map(res => res.json())       
+        return this.http.post(url, info, this.request).map(res => res.json())       
     }
 }

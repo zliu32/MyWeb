@@ -82,8 +82,7 @@ public class UserController {
             JsonNode userInfo = mapper.readTree(request);
             String userName = userInfo.get("username").textValue();
             String passWord = userInfo.get("password").textValue();
-            User user = getUserByName(userName);
-            return user.getPassword().equals(passWord);
+            return userService.authentication(userName, passWord);
         } catch (Exception e){
             return false;
         }

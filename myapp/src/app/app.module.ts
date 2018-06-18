@@ -9,13 +9,15 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { ScoretableComponent } from './scoretable/scoretable.component';
+import { JournalComponent } from './journal/journal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ScoretableComponent
+    ScoretableComponent,
+    JournalComponent
   ],
   imports: [
     BrowserModule,

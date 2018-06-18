@@ -30,5 +30,6 @@
       <div *ngIf="showSuccess" style="color:green">Your submission has been saved</div>
       <div *ngIf="showFail" style="color:crimson">There was some error during saving</div>
       <h1 *ngIf="showScore" style="color:brown">Your total score is {{ totalScore }}</h1>
-  </div>   
+  </div>
+  <button type="button" (click)="jumpto()">Journal</button>
 </div>

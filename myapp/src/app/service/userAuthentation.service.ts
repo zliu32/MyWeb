@@ -1,15 +1,18 @@
 import { Injectable, Component } from "@angular/core";
-import { Http } from "@angular/http";
+import { Http, RequestOptions, Headers } from "@angular/http";
 import * as global from "app/globals";
 import { userInfo } from "../entity/userInterface";
 
 @Injectable()
 export class AuthentationService{
 
-    urlPrefix:string
+    urlPrefix:string;
+    request:RequestOptions;
 
     constructor(private http: Http,){
-        this.urlPrefix = global.urlGlobal;
+        this.urlPrefix = global.urlLocal;
+        let headers = new Headers({'Content-Type': 'application/json'});
+        this.request = new RequestOptions({headers:headers});
     }
 
     check(userName:string, passWord: string) {

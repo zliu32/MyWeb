@@ -27,4 +27,14 @@ public class UserService {
     public User findUserByName(String username){
         return dao.findByName(username);
     }
+
+    @Transactional
+    public boolean authentication(String username, String password){
+        try{
+            User user = findUserByName(username);
+            return user.getPassword().equals(password);
+        } catch (Exception e){
+            return false;
+        }
+    }
 }

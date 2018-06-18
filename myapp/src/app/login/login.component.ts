@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { FormsModule, Validators, AbstractControl, FormControl } from '@angular/forms';
 import{ FormBuilder, FormGroup} from '@angular/forms';
 
+
 import { AuthentationService } from '../service/userAuthentation.service';
 import { Router } from '@angular/router';
 import * as global from "app/globals";
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
       this.auth.check(value.userName, value.passWord)
       .subscribe(data =>{
         if (data){
-          this.router.navigate(["score", {"auth":"123", "userId": value.userName}], { skipLocationChange: false});
+          global.GlobalUserInfo.username = value.userName;
+          this.router.navigate(["score"]);
         } else {
           this.showError = true;
         }

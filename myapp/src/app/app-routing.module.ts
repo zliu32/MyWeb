@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ScoretableComponent } from './scoretable/scoretable.component';
+import { JournalComponent } from './journal/journal.component';
 
 
 export const routes: Routes = [
@@ -22,6 +23,10 @@ export const routes: Routes = [
     {
         path: "score",
         component: ScoretableComponent
+    },
+    {
+        path: "journal",
+        component: JournalComponent
     }
 ]
 

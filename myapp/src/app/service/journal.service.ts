@@ -6,7 +6,7 @@ import { journalInfo } from "../entity/journalInterface";
 
 
 @Injectable()
-export class CommonService{
+export class JournalService{
 
     urlPrefix:string;
     request:RequestOptions;
@@ -17,8 +17,8 @@ export class CommonService{
         this.request = new RequestOptions({headers:headers});
     }
 
-    getDate(offSet:number) {
-        let url = this.urlPrefix + "/api/common/getDate";
-        return this.http.post(url, JSON.stringify(offSet), this.request).map(res => res.json())
+    submitReivew(info:journalInfo){
+        let url = this.urlPrefix + "/api/journal/save";
+        return this.http.post(url, JSON.stringify(info), this.request).map(res => res.json());
     }
 }

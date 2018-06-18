@@ -3,6 +3,7 @@ import { RuleService } from '../service/ruleData.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ruleInfo, requestInfo } from '../entity/userInterface';
 import { CommonService } from '../service/common.service';
+import { GlobalUserInfo } from '../globals';
 
 @Component({
   selector: 'app-scoretable',
@@ -42,26 +43,24 @@ export class ScoretableComponent implements OnInit {
     .subscribe(data => {
       this.titleDate = data["message"];
     });
-    this.urlParams.params.subscribe((params:Params) =>{
-      if (params["auth"] !== "123"){
-        this.router.navigate(["login"]);
+    if (GlobalUserInfo.username === undefined){
+      this.router.navigate(["login"]);
+    }
+    this.userName = GlobalUserInfo.username;
+    this.ruleService.getRuleData()
+    .subscribe(data =>{
+      this.rules = data;
+      for (var i = 0; i < data.length; i ++){
+        var entry = [];
+        entry["Score"] = data[i]["score"];
+        entry["Category"] = data[i]["name"];
+        entry["No"] = i + 1;
+        entry["Description"] = data[i]["description"];
+        entry["id"] = data[i]["id"];
+        this.records.push(entry);
+        this.fetchStat(i);
       }
-      this.userName = params["userId"];
-      this.ruleService.getRuleData()
-      .subscribe(data =>{
-        this.rules = data;
-        for (var i = 0; i < data.length; i ++){
-          var entry = [];
-          entry["Score"] = data[i]["score"];
-          entry["Category"] = data[i]["name"];
-          entry["No"] = i + 1;
-          entry["Description"] = data[i]["description"];
-          entry["id"] = data[i]["id"];
-          this.records.push(entry);
-          this.fetchStat(i);
-        }
-      })
-    });
+    })
   }
 
   submitTable() {
@@ -147,5 +146,9 @@ export class ScoretableComponent implements OnInit {
     for (var i = 0; i < this.rules.length; i ++){
       this.model[i] = 0;
     }
+  }
+
+  jumpto() {
+    this.router.navigate(["journal"]);
   }
 }
