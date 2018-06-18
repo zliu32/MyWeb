@@ -31,7 +31,7 @@ public class RuleStatService {
             int totalScore = ruleStatDao.scoreByUsername(username);
             return totalScore;
         } catch (Exception e){
-            System.out.println(e.toString());
+            System.out.println(e.toString() + "error");
             return -1;
         }
     }
