@@ -3,6 +3,7 @@ import { JournalService } from '../service/journal.service';
 import { GlobalUserInfo } from '../globals';
 import { journalInfo } from '../entity/journalInterface';
 import { CommonService } from '../service/common.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-journal',
@@ -13,11 +14,22 @@ import { CommonService } from '../service/common.service';
 export class JournalComponent implements OnInit {
 
   private journalText:string;
+  private date:string;
+  private submitSuccess:boolean;
+  private sumbitFail:boolean;
 
   constructor(private journalService:JournalService,
-    private commonSerive:CommonService) { }
+    private commonSerive:CommonService,
+    private router: Router) { }
 
   ngOnInit() {
+    if (GlobalUserInfo.username === undefined){
+      this.router.navigate(["login"]);
+    }
+    this.commonSerive.getDate(0)
+    .subscribe(data => {
+      this.date = data["message"];
+    })
   }
 
   submit() {
@@ -27,7 +39,8 @@ export class JournalComponent implements OnInit {
     }
     this.journalService.submitReivew(info)
     .subscribe(data => {
-      console.log(data);
+      this.submitSuccess = true;
+      this.sumbitFail = false;
     });
   }
 

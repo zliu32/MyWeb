@@ -30,5 +30,4 @@ public class JournalController {
         journal.setDate(date);
         return this.journalService.saveJournal(journal);
     }
-
 }

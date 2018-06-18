@@ -37,15 +37,15 @@ export class ScoretableComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (GlobalUserInfo.username === undefined){
+      this.router.navigate(["login"]);
+    }
     this.dateOffset = 0;
     this.disableSelection = false;
     this.commonService.getDate(this.dateOffset)
     .subscribe(data => {
       this.titleDate = data["message"];
     });
-    if (GlobalUserInfo.username === undefined){
-      this.router.navigate(["login"]);
-    }
     this.userName = GlobalUserInfo.username;
     this.ruleService.getRuleData()
     .subscribe(data =>{
