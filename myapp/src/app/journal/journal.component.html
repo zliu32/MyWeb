@@ -1,6 +1,12 @@
 <div class="descriptionarea">
     <span class="namefortxtarea">Today's Review</span>
-    <span style="text-align: right;display:block;">{{ date }}</span>
+    <span style="text-align: right;display:block;">
+      <div>{{ date }}</div>
+      <div>
+        <button type="button" (click)="prev()">Prev</button>
+        <button type="button" (click)="next()">Next</button>
+      </div>
+    </span>
     <textarea [(ngModel)]="journalText"></textarea>
     <span class="buttonfortxtarea">
       <button type="button" (click)="submit()">Submit</button>

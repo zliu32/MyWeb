@@ -25,9 +25,15 @@ public class JournalController {
     @CrossOrigin
     @ApiOperation(value = "保存日记", notes = "保存日期", httpMethod = "POST")
     public Journal saveJournal(@RequestBody Journal journal){
-        long millis = System.currentTimeMillis();
-        String date = new Date(millis).toString();
-        journal.setDate(date);
         return this.journalService.saveJournal(journal);
+    }
+
+    @RequestMapping("/fetch")
+    @ResponseBody
+    @CrossOrigin
+    @ApiOperation(value = "获取日记", notes = "获取日记", httpMethod = "POST")
+    public Journal fetchJournal(@RequestBody String id){
+        Journal result = this.journalService.fetchJournal(id);
+        return result;
     }
 }

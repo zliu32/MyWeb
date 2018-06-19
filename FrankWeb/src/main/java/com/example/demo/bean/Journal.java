@@ -6,15 +6,26 @@ import javax.persistence.*;
 @Table(name = "Journal")
 public class Journal {
 
+    @Id
+    @Column(name = "id", nullable = false)
+    private String id;
+
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Id
     @Column(name = "date", nullable = false)
     private String date;
 
     @Column(name = "context")
     private String context;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -43,9 +54,10 @@ public class Journal {
     @Override
     public String toString() {
         return "Journal{" +
+                "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", date='" + date + '\'' +
-                ", conext='" + context + '\'' +
+                ", context='" + context + '\'' +
                 '}';
     }
 }

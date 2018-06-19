@@ -17,10 +17,13 @@ export class JournalComponent implements OnInit {
   private date:string;
   private submitSuccess:boolean;
   private sumbitFail:boolean;
+  private dateOffset:number;
 
   constructor(private journalService:JournalService,
     private commonSerive:CommonService,
-    private router: Router) { }
+    private router: Router) { 
+      this.dateOffset = 0;
+    }
 
   ngOnInit() {
     if (GlobalUserInfo.username === undefined){
@@ -29,11 +32,15 @@ export class JournalComponent implements OnInit {
     this.commonSerive.getDate(0)
     .subscribe(data => {
       this.date = data["message"];
+      this.fetchReview();
     })
   }
 
   submit() {
+    let id = GlobalUserInfo.username + "-" + this.date;
     var info:journalInfo = {
+      id: id,
+      date: this.date,
       username: GlobalUserInfo.username,
       context: this.journalText
     }
@@ -41,6 +48,30 @@ export class JournalComponent implements OnInit {
     .subscribe(data => {
       this.submitSuccess = true;
       this.sumbitFail = false;
+    });
+  }
+
+  prev() {
+    this.submitSuccess = false;
+    this.dateOffset = this.dateOffset - 1;
+    this.fetchReview();
+  }
+
+  next() {
+    this.submitSuccess = false;
+    this.dateOffset = this.dateOffset + 1;
+    this.fetchReview();
+  }
+
+  fetchReview() {
+    this.commonSerive.getDate(this.dateOffset)
+    .subscribe(data => {
+      this.date = data["message"];
+      let id = GlobalUserInfo.username + "-" + this.date;
+      this.journalService.fetchReview(id)
+      .subscribe(data => {
+        this.journalText = data["context"];
+      })
     });
   }
 

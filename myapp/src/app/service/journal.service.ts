@@ -21,4 +21,9 @@ export class JournalService{
         let url = this.urlPrefix + "/api/journal/save";
         return this.http.post(url, JSON.stringify(info), this.request).map(res => res.json());
     }
+
+    fetchReview(id:string){
+        let url = this.urlPrefix + "/api/journal/fetch";
+        return this.http.post(url, id, this.request).map(res => res.json());
+    }
 }

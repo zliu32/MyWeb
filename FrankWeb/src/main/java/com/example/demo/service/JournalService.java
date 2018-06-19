@@ -23,4 +23,15 @@ public class JournalService {
             return new Journal();
         }
     }
+
+    @Transactional
+    public Journal fetchJournal(String id){
+        try {
+            Journal result = journalDao.findById(id).get();
+            return result;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return new Journal();
+        }
+    }
 }
