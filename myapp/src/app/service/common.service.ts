@@ -1,8 +1,8 @@
 import { Inject, Injectable } from "@angular/core";
-import * as global from "app/globals";
+import * as global from "../../app/globals";
 import { Http, RequestOptions, Headers } from "@angular/http";
-import { ruleInfo, requestInfo } from "../entity/userInterface";
-import { journalInfo } from "../entity/journalInterface";
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+
 
 
 @Injectable()
@@ -19,6 +19,6 @@ export class CommonService{
 
     getDate(offSet:number) {
         let url = this.urlPrefix + "/api/common/getDate";
-        return this.http.post(url, JSON.stringify(offSet), this.request).map(res => res.json())
+        return this.http.post(url, JSON.stringify(offSet), this.request).pipe(map(res => res.json()));
     }
 }

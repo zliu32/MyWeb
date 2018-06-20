@@ -58,7 +58,7 @@ export class JournalComponent implements OnInit {
   }
 
   next() {
-    this.submitSuccess = false;
+    this.submitSuccess = false; 
     this.dateOffset = this.dateOffset + 1;
     this.fetchReview();
   }

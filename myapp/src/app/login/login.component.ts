@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { FormsModule, Validators, AbstractControl, FormControl } from '@angular/forms';
 import{ FormBuilder, FormGroup} from '@angular/forms';
 
 
 import { AuthentationService } from '../service/userAuthentation.service';
 import { Router } from '@angular/router';
-import * as global from "app/globals";
+import * as global from "../../app/globals";
 
 @Component({
   selector: 'app-login',

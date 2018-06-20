@@ -1,7 +1,9 @@
 import { Injectable, Component } from "@angular/core";
 import { Http, RequestOptions, Headers } from "@angular/http";
-import * as global from "app/globals";
+import * as global from "../../app/globals";
 import { userInfo } from "../entity/userInterface";
+import { map } from 'rxjs/operators';
+
 
 @Injectable()
 export class AuthentationService{
@@ -21,6 +23,6 @@ export class AuthentationService{
             password: passWord
         }
         let url = this.urlPrefix + "/api/user/authentication";
-        return this.http.post(url, user).map(res => res.json());
+        return this.http.post(url, user).pipe(map(res => res.json()));
     }
 }
