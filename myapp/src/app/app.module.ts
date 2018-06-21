@@ -27,7 +27,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
