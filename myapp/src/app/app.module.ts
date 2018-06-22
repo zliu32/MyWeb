@@ -11,6 +11,13 @@ import { RegisterComponent } from './register/register.component';
 import { ScoretableComponent } from './scoretable/scoretable.component';
 import { JournalComponent } from './journal/journal.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { SliderModule } from 'angular-image-slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {SlideshowModule} from 'ng-simple-slideshow';
+
+
+
 
 @NgModule({
   declarations: [
@@ -19,7 +26,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegisterComponent,
     ScoretableComponent,
     JournalComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +35,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    SliderModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    SlideshowModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
