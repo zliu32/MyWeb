@@ -1,34 +1,103 @@
-<div id="page">
-  <nav class="colorlib-nav" role="navigation">
-    <div class="top-menu">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-2">
-            <div id="colorlib-logo"><a href="index.html">Stuff</a></div>
-          </div>
-          <div class="col-xs-10 text-right menu-1">
-            <ul>
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a [routerLink]="['/score']">Score</a></li>
-              <li><a [routerLink]="['/journal']">Journal</a></li>
-              <li><a href="about.html">About Me</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </div>
+<app-navbar></app-navbar>
+<div class="page">
+  <slideshow #slidershow [height]="height"
+    [minHeight]="'650px'"
+    [autoPlay]="true"
+    [showArrows]="true"
+    [imageUrls]="slideImageUrlArray"
+    [lazyLoad]="slideImageUrlArray?.length > 1"
+    [autoPlayWaitForLazyLoad]="true"
+    [showDots]="true"
+    [showCaptions]="true"
+  >
+  </slideshow>
+
+  <div id="colorlib-container">
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-4" *ngFor="let blog of blogRowOne; let in = index">
+					<div class="blog-entry">
+						<div class="blog-img">
+							<img [src]="blog" class="img-responsive" alt="html5 bootstrap template">
+						</div>
+						<div class="desc">
+							<p class="meta">
+								<span class="cat"><a href="#">Events</a></span>
+								<span class="date">20 March 2018</span>
+								<span class="pos">By <a href="#">Rich</a></span>
+							</p>
+							<h2><a href="blog.html">Recipe for your site</a></h2>
+							<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+						</div>
+					</div>
         </div>
       </div>
+      <div class="row row-pb-md">
+        <div class="col-md-8">
+          <div class="blog-entry">
+            <div class="blog-img">
+              <img src="./assets/images/blog-13.jpg" class="img-responsive" alt="html5 bootstrap template">
+            </div>
+            <div class="desc">
+               <p class="meta">
+                <span class="cat"><a href="#">Events</a></span>
+                <span class="date">20 March 2018</span>
+                <span class="pos">By <a href="#">Rich</a></span>
+              </p>
+              <h2><a href="blog.html">Recipe for your site</a></h2>
+              <p>A small river named Duden flows by their place and supplies it with the necessary </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="blog-entry">
+            <div class="blog-img">
+              <img src="./assets/images/blog-7.jpg" class="img-responsive" alt="html5 bootstrap template">
+            </div>
+            <div class="desc">
+              <p class="meta">
+                <span class="cat"><a href="#">Events</a></span>
+                <span class="date">20 March 2018</span>
+                <span class="pos">By <a href="#">Rich</a></span>
+              </p>
+              <h2><a href="blog.html">Recipe for your site</a></h2>
+              <p>A small river named Duden flows by their place and supplies it with the necessary </p>
+            </div>
+          </div>
+        </div>            
+      </div>
+			<div class="row row-pb-md">
+        <div class="col-md-4" *ngFor="let blog of blogRowTwo; let in = index">
+          <div class="blog-entry">
+            <div class="blog-img">
+              <img [src]="blog" class="img-responsive" alt="html5 bootstrap template">
+            </div>
+            <div class="desc">
+              <p class="meta">
+                <span class="cat"><a href="#">Events</a></span>
+                <span class="date">20 March 2018</span>
+                <span class="pos">By <a href="#">Rich</a></span>
+              </p>
+              <h2><a href="blog.html">Recipe for your site</a></h2>
+              <p>A small river named Duden flows by their place and supplies it with the necessary </p>
+            </div>
+          </div>
+        </div>
+      </div>      
     </div>
-    <slideshow [height]="height"
-      [minHeight]="'525px'"
-      [autoPlay]="true"
-      [showArrows]="true"
-      [imageUrls]="imageUrlArray"
-      [lazyLoad]="imageUrlArray?.length > 1"
-      [autoPlayWaitForLazyLoad]="true"
-      [showDots]="true">
-    </slideshow>
-  </nav>
+  </div>
+  <div id="colorlib-instagram">
+		<div class="row">
+			<div class="col-md-12 col-md-offset-0 colorlib-heading text-center">
+				<h2>Beauty</h2>
+			</div>
+		</div>
+  </div>
+  <app-footer></app-footer>
 </div>
+
+
+
 
               
   

@@ -1,36 +1,32 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Pricing table </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+</head>
 <app-navbar></app-navbar>
-<div style="width: 500px;margin: 0 auto">
-  <div>
-      <span style="text-align: center;display:block;">小烨烨买包积分器</span>
-        <span style="text-align: right;display:block;">{{ titleDate }}</span>
+<app-header [headerContext]="headContext"></app-header>
+<body>
+  <div class="wrap">
+    <div class="table" *ngFor="let row of tags">
+      <ul>
+        <li *ngFor="let tag of row">
+          <div [style.background-color]="tag.topColor" class="top">
+            <h1>STARTER</h1>
+            <div [style.background-color]="tag.circleColor" class="circle">$19</div>
+          </div>
+          <div class="bottom">
+            <p><span>5</span> users</p>
+            <p><span>10</span> projects</p>
+            <p><span>10GB</span> amount of space</p>
+            <p><span>5</span> e-mail accounts</p>
+            <div class="sign">
+              <button type="button" (click)="click(tag)" class="button" [style.background-color]="tag.buttonColor" [style.color]="tag.buttonTextColor">Sign UP</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>    
   </div>
-  <table class = "table">
-    <thead>
-      <tr>
-        <th *ngFor="let key of keys">{{ key }}</th>
-        <th>Option</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let record of records; let in = index">
-        <td *ngFor="let key of keys">{{ record[key] }}</td>
-        <td>
-        <form >
-          <input type="radio" [(ngModel)]="model[in]" name="sex" [value]=1>Yes
-          <input type="radio" [(ngModel)]="model[in]" name="sex" [value]=0 [disabled]="disableSelection">No
-        </form>
-        </td>
-      </tr>
-    </tbody> 
-  </table>
-  <div style="align-self: auto;">
-      <button type="button" (click)="submitTable()">Submit</button>
-      <button type="button" (click)="checkScore()">Check Score</button>
-      <button type="button" (click)="previous()">Prev</button>
-      <button type="button" (click)="next()">Next</button>
-      <div *ngIf="showSuccess" style="color:green">Your submission has been saved</div>
-      <div *ngIf="showFail" style="color:crimson">There was some error during saving</div>
-      <h1 *ngIf="showScore" style="color:brown">Your total score is {{ totalScore }}</h1>
-  </div>
-  <button type="button" (click)="jumpto()">Journal</button>
-</div>
+</body>
+<app-footer></app-footer>

@@ -10,11 +10,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { ScoretableComponent } from './scoretable/scoretable.component';
 import { JournalComponent } from './journal/journal.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { SliderModule } from 'angular-image-slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {SlideshowModule} from 'ng-simple-slideshow';
+import { SlideshowModule } from './homepage/slideshow/slideshow.module';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { HeaderComponent } from './component/header/header.component';
 
 
 
@@ -27,7 +28,9 @@ import {SlideshowModule} from 'ng-simple-slideshow';
     ScoretableComponent,
     JournalComponent,
     NavbarComponent,
-    HomepageComponent
+    HomepageComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,6 @@ import {SlideshowModule} from 'ng-simple-slideshow';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    SliderModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     SlideshowModule
