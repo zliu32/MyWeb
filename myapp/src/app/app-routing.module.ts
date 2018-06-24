@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { ScoretableComponent } from './scoretable/scoretable.component';
 import { JournalComponent } from './journal/journal.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { BlogComponent } from './blog/blog.component';
 
 
 export const routes: Routes = [
@@ -22,7 +23,7 @@ export const routes: Routes = [
         component: LoginComponent
     },
     {
-        path: 'register',
+        path: 'test',
         component: RegisterComponent
     },
     {
@@ -32,6 +33,10 @@ export const routes: Routes = [
     {
         path: "journal",
         component: JournalComponent
+    },
+    {
+        path: "blogs",
+        component: BlogComponent
     }
 ]
 

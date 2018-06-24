@@ -16,6 +16,8 @@ import { SlideshowModule } from './homepage/slideshow/slideshow.module';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
+import { BlogComponent } from './blog/blog.component';
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 
 
@@ -30,7 +32,8 @@ import { HeaderComponent } from './component/header/header.component';
     NavbarComponent,
     HomepageComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { HeaderComponent } from './component/header/header.component';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    SlideshowModule
+    SlideshowModule,
+    QuillEditorModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],

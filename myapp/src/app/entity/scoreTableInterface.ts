@@ -5,3 +5,9 @@ export interface tagInfo {
     selected:boolean,
     buttonTextColor:string
 }
+
+export interface tagInformation {
+    focus:boolean,
+    backgroundColor:string,
+    fontColor:string
+}
