@@ -18,6 +18,10 @@ import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
 import { BlogComponent } from './blog/blog.component';
 import { QuillEditorModule } from 'ngx-quill-editor';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
+
+
 
 
 
@@ -44,7 +48,9 @@ import { QuillEditorModule } from 'ngx-quill-editor';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     SlideshowModule,
-    QuillEditorModule
+    QuillEditorModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],

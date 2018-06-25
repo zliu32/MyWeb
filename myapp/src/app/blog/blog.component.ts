@@ -4,11 +4,12 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss']
+  
 })
 export class BlogComponent implements OnInit {
 
   public editor;
-  public editorContent = `<h3>I am Example content</h3>`;
+  public editorContent;
   public editorOptions = {
     placeholder: "insert content..."
   };
@@ -35,11 +36,6 @@ export class BlogComponent implements OnInit {
  
   ngOnInit() {
     this.headContext = "Blog"
-    setTimeout(() => {
-      this.editorContent = '<h1>content changed!</h1>';
-      console.log('you can use the quill instance object to do something', this.editor);
-      // this.editor.disable();
-    }, 2800)
   }
 
 }
