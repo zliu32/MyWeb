@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RegisterComponent } from './register/register.component';
 import { ScoretableComponent } from './scoretable/scoretable.component';
 import { JournalComponent } from './journal/journal.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -19,6 +18,9 @@ import { HeaderComponent } from './component/header/header.component';
 import { BlogComponent } from './blog/blog.component';
 import { QuillEditorModule } from 'ngx-quill-editor';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { CalendarComponent } from './blog/calendar/calendar.component';
+import { EditorComponent } from './blog/editor/editor.component';
+import { BlogBoxComponent } from './blog/blog-box/blog-box.component';
 
 
 
@@ -30,14 +32,16 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
+    CalendarComponent,
     ScoretableComponent,
     JournalComponent,
     NavbarComponent,
     HomepageComponent,
     FooterComponent,
     HeaderComponent,
-    BlogComponent
+    BlogComponent,
+    EditorComponent,
+    BlogBoxComponent
   ],
   imports: [
     BrowserModule,

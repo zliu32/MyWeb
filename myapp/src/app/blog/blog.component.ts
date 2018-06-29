@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SELECTEDATE } from '../globals';
 
 @Component({
   selector: 'app-blog',
@@ -8,34 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
-  public editor;
-  public editorContent;
-  public editorOptions = {
-    placeholder: "insert content..."
-  };
   public headContext:string;
+  //public date:Date = new Date();
 
   constructor() { }
- 
-  onEditorBlured(quill) {
-    console.log('editor blur!', quill);
-  }
- 
-  onEditorFocused(quill) {
-    console.log('editor focus!', quill);
-  }
- 
-  onEditorCreated(quill) {
-    this.editor = quill;
-    console.log('quill is ready! this is current quill instance object', quill);
-  }
- 
-  onContentChanged({ quill, html, text }) {
-    console.log('quill content is changed!', html);
-  }
- 
+
   ngOnInit() {
-    this.headContext = "Blog"
+    this.headContext = "Blog";
   }
 
 }

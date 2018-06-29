@@ -1,11 +1,7 @@
 <app-navbar></app-navbar>
 <app-header [headerContext]="headContext"></app-header>
-<div style="height: 640px;width: 70%;margin-left: 30%">
-<quill-editor [(ngModel)]="editorContent"
-              [options]="editorOptions"
-              (blur)="onEditorBlured($event)"
-              (focus)="onEditorFocused($event)"
-              (ready)="onEditorCreated($event)"
-              (change)="onContentChanged($event)"></quill-editor>
+<div style="float: left">
+    <app-calendar></app-calendar>
 </div>
+<app-blog-box></app-blog-box>
 <app-footer></app-footer>
