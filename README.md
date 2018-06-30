@@ -1,1 +1,1 @@
-This is just a web for fun
+This is just a web for fun.
