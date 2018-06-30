@@ -6,4 +6,7 @@
             (ready)="onEditorCreated($event)"
             (change)="onContentChanged($event)">
   </quill-editor>
+  <span *ngIf="showMessage" style="float: right;" [style.color]="msgColor">{{ message }}</span>
+  <a class="btn btn-red" (click)="submit()">Submit</a>
 </div>
+
