@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ScoretableComponent } from './scoretable/scoretable.component';
-import { JournalComponent } from './journal/journal.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SlideshowModule } from './homepage/slideshow/slideshow.module';
@@ -34,7 +33,6 @@ import { BlogBoxComponent } from './blog/blog-box/blog-box.component';
     LoginComponent,
     CalendarComponent,
     ScoretableComponent,
-    JournalComponent,
     NavbarComponent,
     HomepageComponent,
     FooterComponent,

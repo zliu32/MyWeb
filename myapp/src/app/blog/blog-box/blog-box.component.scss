@@ -1,6 +1,11 @@
-.editBox{
+.blogBox{
     height: 640px;
+    width: 80%;
     display: block;
-    margin-left: 296px;
-    background-color: black
-  }
+    border: 1px solid black;
+}
+
+.textBox{
+  padding-top: 50px;
+  margin-left: 50px;
+}

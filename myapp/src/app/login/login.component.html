@@ -1,21 +1,81 @@
-<div>
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
-    <div>
-      <label for="username">User Name: </label>
-      <input
-        type="text"
-        id="username"
-        [formControl]="myForm.controls['userName']"
-        placeholder="User Name">
-      <label for="password">Pass word: </label>
-      <input
-        type="password"
-        id="password"
-        [formControl]="myForm.controls['passWord']"
-        placeholder="Password">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login V3</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <div class="limiter">
+    <div class="container-login100" style="background-image: url('./assets/images/background-login.jpg');">
+      <div class="wrap-login100">
+        <form class="login100-form validate-form">
+          <span class="login100-form-logo">
+            <i class="zmdi zmdi-landscape"></i>
+          </span>
+
+          <span class="login100-form-title p-b-34 p-t-27">
+            Log in
+          </span>
+ 
+          <div class="wrap-input100 validate-input" data-validate="Enter username">
+            <input class="input100" type="text" name="username" placeholder="Username" [(ngModel)]="username">
+            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+            <span class="alert-validate" *ngIf="isUsernameValid"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Enter password">
+            <input class="input100" type="password" name="pass" placeholder="Password" [(ngModel)]="password">
+            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+            <span class="alert-validate" *ngIf="isPwdValid"></span>
+          </div>
+
+          <div class="contact100-form-checkbox">
+            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+            <label class="label-checkbox100" for="ckb1">
+              Remember me
+            </label>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" (click)="authentication()">
+              Login
+            </button>
+          </div>
+
+          <div class="text-center p-t-90">
+            <a class="txt1" href="#">
+              Forgot Password?
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
-    <div *ngIf="showError" style="color:crimson">Incorrect username or password</div>
-    <button type="submit">Submit</button>
-    <button type="button" (click)="register()">Register</button>
-  </form>
-</div>
+  </div>
+
+
+  <div id="dropDownSelect1"></div>
+
+  <!--===============================================================================================-->
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/bootstrap/js/popper.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/daterangepicker/moment.min.js"></script>
+  <script src="vendor/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

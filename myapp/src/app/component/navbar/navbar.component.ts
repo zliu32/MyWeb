@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,19 +11,10 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) { }
+  @Input() currentTab:string;
 
   ngOnInit() {
-  }
-
-  homeNav() {
-
-  }
-
-  scoreNav() {
-    this.router.navigate(["score"]);
-  }
-
-  journalNav() {
-    this.router.navigate(["journal"]);
+    let div = document.getElementById(this.currentTab);
+    div.className = "active";
   }
 }

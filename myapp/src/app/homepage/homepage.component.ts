@@ -1,5 +1,9 @@
 import { Component, OnInit, Input, ViewChild, ViewChildren, Directive } from '@angular/core';
 import { SlideshowComponent } from './slideshow/slideshow.component';
+import * as global from "../../app/globals";
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-homepage',
@@ -13,12 +17,17 @@ export class HomepageComponent implements OnInit {
   private blogRowOne:string[];
   private blogRowTwo:string[];
   private imageUrlPrefix = "./assets/images/";
+  private currentTab:string;
 
-  constructor() {}
+  constructor(private router:Router) {}
 
   public slideImageUrlArray: any;
 
   ngOnInit() {
+    if (global.GlobalUserInfo.username === undefined || global.GlobalUserInfo.username.length == 0) {
+      this.router.navigate(["login"]);
+    }
+    this.currentTab = "home";
     this.slideImageUrlArray = [
       "./assets/images/img_bg_1.jpg",
       "./assets/images/img_bg_2.jpg",

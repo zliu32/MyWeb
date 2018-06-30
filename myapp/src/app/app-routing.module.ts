@@ -2,7 +2,6 @@ import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ScoretableComponent } from './scoretable/scoretable.component';
-import { JournalComponent } from './journal/journal.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { BlogComponent } from './blog/blog.component';
 
@@ -24,10 +23,6 @@ export const routes: Routes = [
     {
         path: "score",
         component: ScoretableComponent
-    },
-    {
-        path: "journal",
-        component: JournalComponent
     },
     {
         path: "blogs",

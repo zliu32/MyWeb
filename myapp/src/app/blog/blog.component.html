@@ -1,7 +1,32 @@
-<app-navbar></app-navbar>
-<app-header [headerContext]="headContext"></app-header>
-<div style="float: left">
-    <app-calendar></app-calendar>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+</head>
+
+<app-navbar [currentTab]="currentTab"></app-navbar>
+<div style="background-image: url(./assets/images/background-blog.jpg)">
+<div id="colorlib-breadcrumbs">
+    <div class="container">
+        <div class="row" style="margin-left:0">
+            <div class="round">
+                <div class="text">Blogs</div>
+                <div style="width: 100%; margin-left: 41%;margin-top: -10px;">
+                    <a class="button" (click)="blogClicked()">Blogs</a><span></span>
+                    <a class="button" (click)="editClicked()">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<app-blog-box></app-blog-box>
+
+<div style="width: 100%;height: 690px;">
+    <div style="float:left;width:296px;height:324px;">
+        <app-calendar></app-calendar>
+    </div>
+    <div style="margin-left:296px;">
+        <app-blog-box *ngIf="showBlog"></app-blog-box>
+        <app-editor *ngIf="showEditor"></app-editor>
+    </div>
+</div>
+</div>
 <app-footer></app-footer>

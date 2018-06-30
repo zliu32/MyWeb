@@ -8,20 +8,17 @@ import { SELECTEDATE } from '../../globals';
 })
 export class BlogBoxComponent implements OnInit, DoCheck {
 
-  private date:string;
-  private clickCount:number;
+  private context: string;
+  private clickCount: number;
   constructor() { }
 
   ngOnInit() {
-    this.clickCount = 0;
+    this.context = SELECTEDATE.date;
   }
 
-  ngDoCheck(){
-    this.clickCount = this.clickCount + 1;
-    if (this.clickCount % 2 === 0){
-      this.date = SELECTEDATE.date;
-      this.clickCount = 0;
-    }
+  ngDoCheck() {
+    this.context = SELECTEDATE.date;
+
   }
 
 }

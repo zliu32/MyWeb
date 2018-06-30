@@ -10,19 +10,13 @@ import { SELECTEDATE } from '../../globals';
 export class CalendarComponent implements OnInit, DoCheck {
 
   constructor() { }
-  private selectedMoment:Date = new Date();
-  private clickCount:number;
+  private selectedMoment: Date = new Date();
 
-  ngOnInit() {   
-    this.clickCount = 0;
+  ngOnInit() {
   }
 
   ngDoCheck() {
-    this.clickCount = this.clickCount + 1;
-    if (this.clickCount % 2 == 0){
-      SELECTEDATE.date = this.selectedMoment.toDateString();
-      this.clickCount = 0;
-    }
+    SELECTEDATE.date = this.selectedMoment.toDateString();
   }
 
 

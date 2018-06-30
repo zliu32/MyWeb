@@ -1,21 +1,59 @@
 body {
     padding: 25px;
-  }
+}
   
-  #editor {
-    border: 1px solid #ccc;
-  }
+#editor {
+  border: 1px solid #ccc;
+}
   
-  #counter {
-    border: 1px solid #ccc;
-    border-width: 0px 1px 1px 1px;
-    color: #aaa;
-    padding: 5px 15px;
-    text-align: right;
-  }
+#counter {
+  border: 1px solid #ccc;
+  border-width: 0px 1px 1px 1px;
+  color: #aaa;
+  padding: 5px 15px;
+  text-align: right;
+}
 
 .editBox{
   height: 640px;
-  display: block;
-  margin-left: 296px;
+  float: left;
+  width: 100%;
+}
+
+.button {
+  background: #76B3FA;
+  border-radius: 100px;
+  padding: 20px 60px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.45em;
+  margin: 0 15px;
+}
+
+body {
+  font-family: 'Montserrat', Helvetica, sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+p {
+  max-width: 560px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+  font-size: 18px;
+  line-height: 2;
+  color: #222;
+}
+
+.button {
+  background: #76B3FA;
+  border-radius: 100px;
+  padding: 20px 60px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.45em;
+  margin: 0 15px;
 }
