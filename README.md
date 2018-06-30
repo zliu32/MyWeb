@@ -1,1 +1,1 @@
-Test test
+This is just a web for fun
