@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { SELECTEDATE } from '../globals';
 import * as global from "../../app/globals";
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
     '../styles/css/owl.theme.default.min.css', '../styles/css/style.css']
 
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, DoCheck {
 
   public headerContext: string;
   //public date:Date = new Date();
@@ -20,6 +20,7 @@ export class BlogComponent implements OnInit {
   public showEditor: boolean;
   public context: string;
   public currentTab: string;
+  private oldDate:string;
 
   constructor(private router:Router) { }
 
@@ -32,6 +33,13 @@ export class BlogComponent implements OnInit {
     this.showBlog = true;
     SELECTEDATE.date = new Date().toDateString();
     //this.showBlog = true;
+  }
+
+  ngDoCheck() {
+    if (this.oldDate != SELECTEDATE.date){
+      this.oldDate = SELECTEDATE.date;
+      this.blogClicked();
+    }
   }
 
   blogClicked() {

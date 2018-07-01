@@ -26,6 +26,11 @@ export class EditorComponent implements OnInit, DoCheck {
   constructor(private fcService: FcService) { }
 
   ngOnInit() {
+    var url = "/api/journal/fetch";
+    var id: string = SELECTEDATE.date + "-" + global.GlobalUserInfo.username;
+    this.fcService.sendPost(id, url).subscribe(res => {
+      this.editorContent = res["context"];
+    })
   }
 
   ngDoCheck() {
