@@ -20,10 +20,10 @@ const FIRST_SLIDE_KEY = makeStateKey<any>('firstSlide');
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.scss'],
   animations: [
-    trigger('flyInOut',[
+    trigger('flyInOut', [
       transition('void => *', [
-        style({transform: 'translateY(100%)', opacity: 0}),
-        animate('500ms', style({transform: 'translateY(0)', opacity: 1}))
+        style({ transform: 'translateY(100%)', opacity: 0 }),
+        animate('500ms', style({ transform: 'translateY(0)', opacity: 1 }))
       ])
     ])
   ]
@@ -37,7 +37,7 @@ export class SlideshowComponent implements DoCheck {
   private initial: boolean = true;
   private showDiv: boolean = false;
 
-  @Input() flyState : string = "in";
+  @Input() flyState: string = "in";
   @Input() imageUrls: (string | IImage)[] = [];
   @Input() height: string = '100%';
   @Input() minHeight: string;
@@ -58,6 +58,7 @@ export class SlideshowComponent implements DoCheck {
   @Input() captionColor: string = '#FFF';
   @Input() captionBackground: string = 'rgba(0, 0, 0, .35)';
   @Input() lazyLoad: boolean = false;
+  @Input() tipContext: string;
 
   @Output('onSlideLeft') public onSlideLeft = new EventEmitter<number>();
   @Output('onSlideRight') public onSlideRight = new EventEmitter<number>();
@@ -67,6 +68,8 @@ export class SlideshowComponent implements DoCheck {
   @ViewChild('container') container: ElementRef;
   @ViewChild('prevArrow') prevArrow: ElementRef;
   @ViewChild('nextArrow') nextArrow: ElementRef;
+
+  public oldContext: string;
 
   constructor(
     private swipeService: SwipeService,
@@ -79,6 +82,7 @@ export class SlideshowComponent implements DoCheck {
 
   ngOnInit() {
     this.showDiv = true;
+
   }
 
   ngDoCheck() {
@@ -88,6 +92,12 @@ export class SlideshowComponent implements DoCheck {
     this.setSlides();
     this.setStyles();
     this.handleAutoPlay();
+    var element = document.getElementById("tipBox");
+    if (element != null) {
+      element.innerHTML = this.tipContext;
+      this.oldContext = this.tipContext;
+      console.log("asd");
+    }
   }
 
   /**
@@ -98,8 +108,8 @@ export class SlideshowComponent implements DoCheck {
    *              0 is taken into account for failed swipes
    */
   onSlide(indexDirection: number, isSwipe?: boolean): void {
-    
-    if (this.debug === true) console.log(`onSlide(${ indexDirection }, ${ isSwipe })`);
+
+    if (this.debug === true) console.log(`onSlide(${indexDirection}, ${isSwipe})`);
     this.handleAutoPlay(this.stopAutoPlayOnSlide);
     this.slide(indexDirection, isSwipe);
   }
@@ -134,7 +144,7 @@ export class SlideshowComponent implements DoCheck {
    * @description set the index to the desired index - 1 and simulate a right slide
    */
   goToSlide(index: number) {
-    if (this.debug === true) console.log(`goToSlide(${ index })`);
+    if (this.debug === true) console.log(`goToSlide(${index})`);
     const beforeClickIndex = this.slideIndex;
     this.slideIndex = index - 1;
     this.setSlideIndex(1);
@@ -151,7 +161,7 @@ export class SlideshowComponent implements DoCheck {
    * @description set the index to the desired index - 1 and simulate a right slide
    */
   getSlideStyle(index: number) {
-    if (this.debug === true) console.log(`getSlideStyle(${ index })`);
+    if (this.debug === true) console.log(`getSlideStyle(${index})`);
     const slide = this.slides[index];
 
     if (slide.loaded) {
@@ -179,7 +189,7 @@ export class SlideshowComponent implements DoCheck {
    * @description Set the new slide index, then make the transition happen.
    */
   private slide(indexDirection: number, isSwipe?: boolean): void {
-    if (this.debug === true) console.log(`slide(${ indexDirection }, ${ isSwipe })`);
+    if (this.debug === true) console.log(`slide(${indexDirection}, ${isSwipe})`);
     const oldIndex = this.slideIndex;
     this.setSlideIndex(indexDirection);
     if (!this.slides[this.slideIndex].loaded) this.loadRemainingSlides();
@@ -195,7 +205,7 @@ export class SlideshowComponent implements DoCheck {
    * @description This is just treating the url array like a circular list.
    */
   private setSlideIndex(indexDirection: number): void {
-    if (this.debug === true) console.log(`setSlideIndex(${ this.slideIndex })`);
+    if (this.debug === true) console.log(`setSlideIndex(${this.slideIndex})`);
     this.slideIndex += indexDirection;
     if (this.slideIndex < 0) this.slideIndex = this.slides.length - 1;
     if (this.slideIndex >= this.slides.length) this.slideIndex = 0;
@@ -209,7 +219,7 @@ export class SlideshowComponent implements DoCheck {
    *              the left and right are assigned classes.
    */
   private slideLeft(oldIndex: number, isSwipe?: boolean): void {
-    if (this.debug === true) console.log(`slideLeft(${ oldIndex }, ${ isSwipe })`);
+    if (this.debug === true) console.log(`slideLeft(${oldIndex}, ${isSwipe})`);
     if (isSwipe === true) this.onSwipeLeft.emit(this.slideIndex);
     else this.onSlideLeft.emit(this.slideIndex);
     this.slides[this.getLeftSideIndex(oldIndex)].leftSide = false;
@@ -229,7 +239,7 @@ export class SlideshowComponent implements DoCheck {
    *              the left and right are assigned classes.
    */
   private slideRight(oldIndex: number, isSwipe?: boolean): void {
-    if (this.debug === true) console.log(`slideRight(${ oldIndex }, ${ isSwipe })`);
+    if (this.debug === true) console.log(`slideRight(${oldIndex}, ${isSwipe})`);
     if (isSwipe === true) this.onSwipeRight.emit(this.slideIndex);
     else this.onSlideRight.emit(this.slideIndex);
     this.slides[this.getRightSideIndex(oldIndex)].rightSide = false;
@@ -250,9 +260,9 @@ export class SlideshowComponent implements DoCheck {
       if (this.checkCache() || this.initial === true) {
         if (this.debug === true) {
           console.log(`this.checkCache() || this.initial === true`);
-          console.log(`this.initial: ${ this.initial }`);
-          console.log(`this.urlCache: ${ this.urlCache }`);
-          console.log(`this.imageUrls: ${ this.imageUrls }`);
+          console.log(`this.initial: ${this.initial}`);
+          console.log(`this.urlCache: ${this.urlCache}`);
+          console.log(`this.imageUrls: ${this.imageUrls}`);
         }
         this.initial = false;
         this.urlCache = Array.from(this.imageUrls);
@@ -429,10 +439,10 @@ export class SlideshowComponent implements DoCheck {
    * @returns null;
    * @description let journal re-enter the screen
    */
-  private reEnter(){
+  private reEnter() {
     this.showDiv = !this.showDiv;
     setTimeout(() => {
       this.showDiv = !this.showDiv;
-    }) 
+    })
   }
 }
