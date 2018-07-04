@@ -45,7 +45,7 @@ export class SlideshowComponent implements DoCheck {
   @Input() showArrows: boolean = true;
   @Input() disableSwiping: boolean = false;
   @Input() autoPlay: boolean = false;
-  @Input() autoPlayInterval: number = 2000;
+  @Input() autoPlayInterval: number = 5000;
   @Input() stopAutoPlayOnSlide: boolean = true;
   @Input() autoPlayWaitForLazyLoad: boolean = false;
   @Input() debug: boolean = false;
@@ -86,18 +86,14 @@ export class SlideshowComponent implements DoCheck {
   }
 
   ngDoCheck() {
-    if (this.debug === true) console.log(`ngOnChanges()`);
-    // if this is the first being called, create a copy of the input
+    var element = document.getElementById("tipBox");
+    if (element != null) {
+      element.innerHTML = this.tipContext;
+    }    // if this is the first being called, create a copy of the input
     if (this.initial === true) this.urlCache = Array.from(this.imageUrls);
     this.setSlides();
     this.setStyles();
     this.handleAutoPlay();
-    var element = document.getElementById("tipBox");
-    if (element != null) {
-      element.innerHTML = this.tipContext;
-      this.oldContext = this.tipContext;
-      console.log("asd");
-    }
   }
 
   /**

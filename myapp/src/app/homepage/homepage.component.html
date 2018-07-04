@@ -1,36 +1,33 @@
 <app-navbar [currentTab]="currentTab"></app-navbar>
 <div class="page">
-  <slideshow #slidershow [height]="height"
-    [minHeight]="'650px'"
-    [autoPlay]="true"
-    [showArrows]="true"
-    [imageUrls]="slideImageUrlArray"
-    [lazyLoad]="slideImageUrlArray?.length > 1"
-    [autoPlayWaitForLazyLoad]="true"
-    [showDots]="true"
-    [showCaptions]="true"
-    [tipContext]="tipContext"
-  >
+  <slideshow #slidershow [height]="height" [minHeight]="'650px'" [autoPlay]="true" [showArrows]="true" [imageUrls]="slideImageUrlArray"
+    [lazyLoad]="slideImageUrlArray?.length > 1" [autoPlayWaitForLazyLoad]="true" [showDots]="true" [showCaptions]="true" [tipContext]="tipContext">
   </slideshow>
 
   <div id="colorlib-container">
-		<div class="container">
-			<div class="row row-pb-md">
-				<div class="col-md-4" *ngFor="let blog of blogRowOne; let in = index">
-					<div class="blog-entry">
-						<div class="blog-img">
-							<img [src]="blog" class="img-responsive" alt="html5 bootstrap template">
-						</div>
-						<div class="desc">
-							<p class="meta">
-								<span class="cat"><a href="#">Events</a></span>
-								<span class="date">20 March 2018</span>
-								<span class="pos">By <a href="#">Rich</a></span>
-							</p>
-							<h2><a href="blog.html">Recipe for your site</a></h2>
-							<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-						</div>
-					</div>
+    <div class="container">
+      <div class="row row-pb-md">
+        <div class="col-md-4" *ngFor="let blog of blogRowOne; let in = index">
+          <div class="blog-entry">
+            <div class="blog-img">
+              <img [src]="blog" class="img-responsive" alt="html5 bootstrap template">
+            </div>
+            <div class="desc">
+              <p class="meta">
+                <span class="cat">
+                  <a>Events</a>
+                </span>
+                <span class="date">{{ blogDate[in] }}</span>
+                <span class="pos">By
+                  <a>{{ username }}</a>
+                </span>
+              </p>
+              <h2>
+                <a>Blog for the day</a>
+              </h2>
+              <p>{{ blogContext[in] }} </p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row row-pb-md">
@@ -40,13 +37,19 @@
               <img src="./assets/images/blog-13.jpg" class="img-responsive" alt="html5 bootstrap template">
             </div>
             <div class="desc">
-               <p class="meta">
-                <span class="cat"><a href="#">Events</a></span>
-                <span class="date">20 March 2018</span>
-                <span class="pos">By <a href="#">Rich</a></span>
+              <p class="meta">
+                <span class="cat">
+                  <a>Events</a>
+                </span>
+                <span class="date">{{ blogDate[3] }}</span>
+                <span class="pos">By
+                  <a>{{ username }}</a>
+                </span>
               </p>
-              <h2><a href="blog.html">Recipe for your site</a></h2>
-              <p>A small river named Duden flows by their place and supplies it with the necessary </p>
+              <h2>
+                <a>Blog for the day</a>
+              </h2>
+              <p>{{ blogContext[3] }}</p>
             </div>
           </div>
         </div>
@@ -57,17 +60,23 @@
             </div>
             <div class="desc">
               <p class="meta">
-                <span class="cat"><a href="#">Events</a></span>
-                <span class="date">20 March 2018</span>
-                <span class="pos">By <a href="#">Rich</a></span>
+                <span class="cat">
+                  <a>Events</a>
+                </span>
+                <span class="date">{{ blogDate[4] }}</span>
+                <span class="pos">By
+                  <a>{{ username }}</a>
+                </span>
               </p>
-              <h2><a href="blog.html">Recipe for your site</a></h2>
-              <p>A small river named Duden flows by their place and supplies it with the necessary </p>
+              <h2>
+                <a>Blog for the day</a>
+              </h2>
+              <p>{{ blogContext[4] }}</p>
             </div>
           </div>
-        </div>            
+        </div>
       </div>
-			<div class="row row-pb-md">
+      <div class="row row-pb-md">
         <div class="col-md-4" *ngFor="let blog of blogRowTwo; let in = index">
           <div class="blog-entry">
             <div class="blog-img">
@@ -75,30 +84,30 @@
             </div>
             <div class="desc">
               <p class="meta">
-                <span class="cat"><a href="#">Events</a></span>
-                <span class="date">20 March 2018</span>
-                <span class="pos">By <a href="#">Rich</a></span>
+                <span class="cat">
+                  <a>Events</a>
+                </span>
+                <span class="date">{{ blogDate[in + 5] }}</span>
+                <span class="pos">By
+                  <a>{{ username }}</a>
+                </span>
               </p>
-              <h2><a href="blog.html">Recipe for your site</a></h2>
-              <p>A small river named Duden flows by their place and supplies it with the necessary </p>
+              <h2>
+                <a>Blog for the day</a>
+              </h2>
+              <p>{{ blogContext[in + 5] }}</p>
             </div>
           </div>
         </div>
-      </div>      
+      </div>
     </div>
   </div>
   <div id="colorlib-instagram">
-		<div class="row">
-			<div class="col-md-12 col-md-offset-0 colorlib-heading text-center">
-				<h2>Beauty</h2>
-			</div>
-		</div>
+    <div class="row">
+      <div class="col-md-12 col-md-offset-0 colorlib-heading text-center">
+        <h2>Beauty</h2>
+      </div>
+    </div>
   </div>
   <app-footer></app-footer>
 </div>
-
-
-
-
-              
-  

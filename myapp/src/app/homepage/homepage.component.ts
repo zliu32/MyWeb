@@ -21,21 +21,28 @@ export class HomepageComponent implements OnInit {
   private imageUrlPrefix = "./assets/images/";
   private currentTab: string;
   public tipContext: string;
+  public username: string;
 
   constructor(private router: Router,
     private fcService: FcService) { }
 
   public slideImageUrlArray: any;
+  public blogDate: any[] = [];
+  public blogContext: any[] = [];
 
   ngOnInit() {
     if (global.GlobalUserInfo.username === undefined || global.GlobalUserInfo.username.length == 0) {
       this.router.navigate(["login"]);
     }
+    this.username = global.GlobalUserInfo.username;
     var date = new Date();
-    date.setDate(date.getDate() - 1);
     var id = date.toDateString() + "-" + global.GlobalUserInfo.username;
     this.fcService.sendPost(id, "/api/journal/fetch").subscribe(res => {
-      this.tipContext = res["context"];
+      if (res["context"] == null) {
+        this.tipContext = "Haven't written anything today";
+      } else {
+        this.tipContext = res["context"];
+      }
     });
     this.currentTab = "home";
     this.slideImageUrlArray = [
@@ -54,7 +61,30 @@ export class HomepageComponent implements OnInit {
       this.imageUrlPrefix + "blog-5.jpg",
       this.imageUrlPrefix + "blog-2.jpg"
     ];
-
+    for (var i = 0; i < 8; i++) {
+      var today = new Date();
+      today.setDate(today.getDate() - i - 1);
+      this.blogDate[i] = today.toDateString();
+      this.setBlogContext(i);
+    }
   }
 
+  setBlogContext(index: number) {
+    this.fcService.sendPost(this.getId(this.blogDate[index]), "/api/journal/fetch").subscribe(res => {
+      if (res["context"] == null) {
+        this.blogContext[index] = "This guy is too lazy to leave anything";
+      } else {
+        this.blogContext[index] = this.safeTag(res["context"]);
+      }
+    });
+  }
+
+  getId(date: string) {
+    return date + "-" + global.GlobalUserInfo.username;
+  }
+
+  safeTag(str: string) {
+    let regex = /(<([^>]+)>)/ig;
+    return str.replace(/<\/?[^>]+(>|$)/g, "");
+  }
 }
