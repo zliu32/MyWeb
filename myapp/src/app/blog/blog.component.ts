@@ -25,9 +25,10 @@ export class BlogComponent implements OnInit, DoCheck {
   constructor(private router:Router) { }
 
   ngOnInit() {
-    if (global.GlobalUserInfo.username === undefined || global.GlobalUserInfo.username.length == 0) {
+    let username =localStorage.getItem("username");
+    if (username == null) {
       this.router.navigate(["login"]);
-    }    
+    }
     this.currentTab = "blogs";
     this.headerContext = "Blog";
     this.showBlog = true;
@@ -50,6 +51,10 @@ export class BlogComponent implements OnInit, DoCheck {
   editClicked() {
     this.showBlog = false;
     this.showEditor = true;
+  }
+
+  submitHandle() {
+    this.blogClicked();
   }
 
 

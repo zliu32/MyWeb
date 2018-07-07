@@ -24,7 +24,8 @@ export class ScoretableComponent implements OnInit {
     private fcService: FcService) { }
 
   ngOnInit() {
-    if (global.GlobalUserInfo.username === undefined || global.GlobalUserInfo.username.length == 0) {
+    let username =localStorage.getItem("username");
+    if (username == null) {
       this.router.navigate(["login"]);
     }
     this.currentTab = "score";
@@ -71,7 +72,7 @@ export class ScoretableComponent implements OnInit {
       }
       let tempRuleInfo: ruleInfo = {
         ruleId: this.tags[i].id,
-        username: global.GlobalUserInfo.username,
+        username: localStorage.getItem("username"),
         score: tempScore,
       }
       this.fcService.sendPost(tempRuleInfo, "/api/rulestat/save").subscribe(res => {

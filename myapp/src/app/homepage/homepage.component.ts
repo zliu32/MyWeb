@@ -31,12 +31,13 @@ export class HomepageComponent implements OnInit {
   public blogContext: any[] = [];
 
   ngOnInit() {
-    if (global.GlobalUserInfo.username === undefined || global.GlobalUserInfo.username.length == 0) {
+    let username =localStorage.getItem("username");
+    if (username == null) {
       this.router.navigate(["login"]);
     }
-    this.username = global.GlobalUserInfo.username;
+    this.username = username;
     var date = new Date();
-    var id = date.toDateString() + "-" + global.GlobalUserInfo.username;
+    var id = date.toDateString() + "-" + username;
     this.fcService.sendPost(id, "/api/journal/fetch").subscribe(res => {
       if (res["context"] == null) {
         this.tipContext = "Haven't written anything today";
@@ -80,7 +81,7 @@ export class HomepageComponent implements OnInit {
   }
 
   getId(date: string) {
-    return date + "-" + global.GlobalUserInfo.username;
+    return date + "-" + localStorage.getItem("username");
   }
 
   safeTag(str: string) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Output, EventEmitter } from '@angular/core';
 import { SELECTEDATE } from '../../globals';
 import { journalInfo } from '../../entity/journalInterface';
 import * as global from "../../../app/globals";
@@ -22,12 +22,13 @@ export class EditorComponent implements OnInit, DoCheck {
   public showMessage: boolean;
   public message: string;
   public msgColor: string;
+  @Output() public submitEvent = new EventEmitter();
 
   constructor(private fcService: FcService) { }
 
   ngOnInit() {
     var url = "/api/journal/fetch";
-    var id: string = SELECTEDATE.date + "-" + global.GlobalUserInfo.username;
+    var id: string = SELECTEDATE.date + "-" + localStorage.getItem("username");
     this.fcService.sendPost(id, url).subscribe(res => {
       this.editorContent = res["context"];
     })
@@ -54,11 +55,12 @@ export class EditorComponent implements OnInit, DoCheck {
   }
 
   submit() {
-    var id: string = SELECTEDATE.date + "-" + global.GlobalUserInfo.username;
+    let username = localStorage.getItem("username");
+    var id: string = SELECTEDATE.date + "-" + username;
     var textInfo: journalInfo = {
       id: id,
       date: SELECTEDATE.date,
-      username: global.GlobalUserInfo.username,
+      username: username,
       context: this.editorContent
     }
     this.fcService.sendPost(textInfo, "/api/journal/save").subscribe(res => {
@@ -66,6 +68,7 @@ export class EditorComponent implements OnInit, DoCheck {
       if (res !== undefined) {
         this.message = "Successfully uploaded";
         this.msgColor = "green";
+        this.submitEvent.emit(true);
       } else {
         this.msgColor = "red";
         this.message = "Upload failed";

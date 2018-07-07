@@ -26,7 +26,7 @@
         </div>
         <div style="margin-left:296px;">
             <app-blog-box *ngIf="showBlog"></app-blog-box>
-            <app-editor *ngIf="showEditor"></app-editor>
+            <app-editor *ngIf="showEditor" (submitEvent)="submitHandle($event)"></app-editor>
         </div>
     </div>
 </div>

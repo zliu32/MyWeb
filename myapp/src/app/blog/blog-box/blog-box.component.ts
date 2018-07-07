@@ -30,10 +30,13 @@ export class BlogBoxComponent implements OnInit, DoCheck {
 
   getContext() {
     var url = "/api/journal/fetch";
-    var id: string = SELECTEDATE.date + "-" + global.GlobalUserInfo.username;
+    var id: string = SELECTEDATE.date + "-" + localStorage.getItem("username");
     this.fcService.sendPost(id, url).subscribe(res => {
       var element = document.getElementById("box");
       element.innerHTML = res["context"];
+      if (res["context"] == null){
+        element.innerHTML = "<h5>Write Something</h5>";
+      }
       //this.context = res["context"];
     })
   }

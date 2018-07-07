@@ -17,4 +17,9 @@ export class NavbarComponent implements OnInit {
     let div = document.getElementById(this.currentTab);
     div.className = "active";
   }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(["login"]);
+  }
 }
