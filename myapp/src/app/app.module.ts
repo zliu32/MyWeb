@@ -20,6 +20,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { CalendarComponent } from './blog/calendar/calendar.component';
 import { EditorComponent } from './blog/editor/editor.component';
 import { BlogBoxComponent } from './blog/blog-box/blog-box.component';
+import { RuletableComponent } from './ruletable/ruletable.component';
 
 
 
@@ -39,7 +40,8 @@ import { BlogBoxComponent } from './blog/blog-box/blog-box.component';
     HeaderComponent,
     BlogComponent,
     EditorComponent,
-    BlogBoxComponent
+    BlogBoxComponent,
+    RuletableComponent
   ],
   imports: [
     BrowserModule,

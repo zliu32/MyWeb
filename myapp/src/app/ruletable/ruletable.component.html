@@ -1,0 +1,25 @@
+<div class="table-users">
+  <div class="header">Users</div>
+  
+  <table cellspacing="0">
+     <tr>
+        <th></th>
+        <th>Creater</th>
+        <th>Creation Date</th>
+        <th>Description</th>
+        <th>Score</th>
+        <th width="230">Comments</th>
+     </tr>
+
+     <tr *ngFor="let rule of ruleData">
+        <td><img src="http://lorempixel.com/100/100/people/1" alt="" /></td>
+        <td>{{ rule.creater }}</td>
+        <td>{{ rule.date }}</td>
+        <td>{{ rule.description }}</td>
+        <td>{{ rule.score }}</td>
+        <td>{{ rule.comment }}</td>
+     </tr>
+
+  </table>
+</div>
+

@@ -20,7 +20,6 @@ export class HomepageComponent implements OnInit {
   private blogRowTwo: string[];
   private imageUrlPrefix = "./assets/images/";
   private currentTab: string;
-  public tipContext: string;
   public username: string;
 
   constructor(private router: Router,
@@ -38,29 +37,24 @@ export class HomepageComponent implements OnInit {
     this.username = username;
     var date = new Date();
     var id = date.toDateString() + "-" + username;
-    this.fcService.sendPost(id, "/api/journal/fetch").subscribe(res => {
-      if (res["context"] == null) {
-        this.tipContext = "Haven't written anything today";
-      } else {
-        this.tipContext = res["context"];
-      }
-    });
     this.currentTab = "home";
     this.slideImageUrlArray = [
-      "./assets/images/img_bg_1.jpg",
-      "./assets/images/img_bg_2.jpg",
-      "./assets/images/img_bg_3.jpg",
-      "./assets/images/img_bg_4.jpg"
+      "./assets/images/wyyslide1.JPG",
+      "./assets/images/wyyslide2.JPG",
+      "./assets/images/wyyslide3.JPG",
+      "./assets/images/wyyslide4.JPG",
+      "./assets/images/wyyslide5.jpg",
+      "./assets/images/wyyslide6.jpg"
     ];
     this.blogRowOne = [
-      this.imageUrlPrefix + "blog-1.jpg",
-      this.imageUrlPrefix + "blog-5.jpg",
-      this.imageUrlPrefix + "blog-2.jpg"
+      this.imageUrlPrefix + "blog8.JPG",
+      this.imageUrlPrefix + "blog2.JPG",
+      this.imageUrlPrefix + "blog1.JPG"
     ];
     this.blogRowTwo = [
-      this.imageUrlPrefix + "blog-1.jpg",
-      this.imageUrlPrefix + "blog-5.jpg",
-      this.imageUrlPrefix + "blog-2.jpg"
+      this.imageUrlPrefix + "blog3.JPG",
+      this.imageUrlPrefix + "blog4.JPG",
+      this.imageUrlPrefix + "blog6.JPG"
     ];
     for (var i = 0; i < 8; i++) {
       var today = new Date();

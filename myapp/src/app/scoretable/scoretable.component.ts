@@ -37,7 +37,7 @@ export class ScoretableComponent implements OnInit {
           focus: false,
           backgroundColor: "white",
           fontColor: "#777",
-          name: res[i]["name"],
+          name: res[i]["category"],
           description: res[i]["description"],
           score: res[i]["score"],
           selected:false,

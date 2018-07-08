@@ -28,7 +28,7 @@ public class RuleController {
     public Rule saveRule(@RequestBody Rule rule){
         long millis = System.currentTimeMillis();
         Date date = new Date(millis);
-        rule.setDate(date);
+        rule.setDate(date.toString());
         return ruleService.saveRule(rule);
     }
 

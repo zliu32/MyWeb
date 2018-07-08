@@ -12,6 +12,7 @@ import { DomSanitizer, TransferState, makeStateKey } from '@angular/platform-bro
 import { trigger, state, style, animate, transition, animation } from '@angular/animations';
 import { SelectMultipleControlValueAccessor } from '@angular/forms';
 import { delay } from 'rxjs/operators';
+import { FcService } from '../../service/FcService';
 
 const FIRST_SLIDE_KEY = makeStateKey<any>('firstSlide');
 
@@ -36,6 +37,7 @@ export class SlideshowComponent implements DoCheck {
   private autoplayIntervalId: any;
   private initial: boolean = true;
   private showDiv: boolean = false;
+  private boxContext:string;
 
   @Input() flyState: string = "in";
   @Input() imageUrls: (string | IImage)[] = [];
@@ -45,7 +47,7 @@ export class SlideshowComponent implements DoCheck {
   @Input() showArrows: boolean = true;
   @Input() disableSwiping: boolean = false;
   @Input() autoPlay: boolean = false;
-  @Input() autoPlayInterval: number = 5000;
+  @Input() autoPlayInterval: number = 8000;
   @Input() stopAutoPlayOnSlide: boolean = true;
   @Input() autoPlayWaitForLazyLoad: boolean = false;
   @Input() debug: boolean = false;
@@ -58,7 +60,6 @@ export class SlideshowComponent implements DoCheck {
   @Input() captionColor: string = '#FFF';
   @Input() captionBackground: string = 'rgba(0, 0, 0, .35)';
   @Input() lazyLoad: boolean = false;
-  @Input() tipContext: string;
 
   @Output('onSlideLeft') public onSlideLeft = new EventEmitter<number>();
   @Output('onSlideRight') public onSlideRight = new EventEmitter<number>();
@@ -69,27 +70,34 @@ export class SlideshowComponent implements DoCheck {
   @ViewChild('prevArrow') prevArrow: ElementRef;
   @ViewChild('nextArrow') nextArrow: ElementRef;
 
-  public oldContext: string;
-
   constructor(
     private swipeService: SwipeService,
     private renderer: Renderer2,
     private transferState: TransferState,
     public sanitizer: DomSanitizer,
     @Inject(PLATFORM_ID) private platform_id: any,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    private fcService: FcService
   ) { }
 
   ngOnInit() {
     this.showDiv = true;
+    var date = new Date();
+    var id = date.toDateString() + "-" + localStorage.getItem("username");
+    this.fcService.sendPost(id, "/api/journal/fetch").subscribe(res => {
+      if (res["context"] == null) {
+        this.boxContext = "Haven't written anything today";
+      } else {
+        this.boxContext = this.safeTag(res["context"]);
+      }
+    });
+  }
 
+  safeTag(str: string) {
+    return str.replace(/<\/?[^>]+(>|$)/g, "");
   }
 
   ngDoCheck() {
-    var element = document.getElementById("tipBox");
-    if (element != null) {
-      element.innerHTML = this.tipContext;
-    }    // if this is the first being called, create a copy of the input
     if (this.initial === true) this.urlCache = Array.from(this.imageUrls);
     this.setSlides();
     this.setStyles();

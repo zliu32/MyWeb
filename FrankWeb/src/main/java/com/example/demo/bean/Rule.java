@@ -13,19 +13,23 @@ public class Rule {
     public int id;
 
     @Column(name = "date", nullable = false)
-    public Date date;
+    public String date;
 
     @Column(name = "description", nullable = false, length = 255)
     public String description;
 
-    @Column(name = "name", nullable = false, length = 255)
-    public String name;
+    @Column(name = "category", nullable = false, length = 255)
+    public String category;
 
     @Column(name = "score")
     public int score;
 
-    @Column(name = "createrId")
-    public int createId;
+    @Column(name = "creater")
+    public String creater;
+
+    @Lob
+    @Column(name = "comment", length = 50000)
+    public String comment;
 
     public int getId() {
         return id;
@@ -35,11 +39,11 @@ public class Rule {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -51,12 +55,12 @@ public class Rule {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getCategory() {
+        return category;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getScore() {
@@ -67,23 +71,32 @@ public class Rule {
         this.score = score;
     }
 
-    public int getCreateId() {
-        return createId;
+    public String getCreater() {
+        return creater;
     }
 
-    public void setCreateId(int createId) {
-        this.createId = createId;
+    public void setCreater(String creater) {
+        this.creater = creater;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override
     public String toString() {
         return "Rule{" +
                 "id=" + id +
-                ", date=" + date +
+                ", date='" + date + '\'' +
                 ", description='" + description + '\'' +
-                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
                 ", score=" + score +
-                ", createId=" + createId +
+                ", creater='" + creater + '\'' +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }

@@ -16,7 +16,8 @@ public class Journal {
     @Column(name = "date", nullable = false)
     private String date;
 
-    @Column(name = "context")
+    @Lob
+    @Column(name = "context", length = 50000)
     private String context;
 
     public String getId() {
