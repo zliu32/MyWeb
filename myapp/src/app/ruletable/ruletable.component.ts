@@ -4,7 +4,7 @@ import { FcService } from '../service/FcService';
 @Component({
   selector: 'app-ruletable',
   templateUrl: './ruletable.component.html',
-  styleUrls: ['./ruletable.component.scss', './ruletable.component.less'],
+  styleUrls: ['./ruletable.component.scss', './ruletablePop.component.scss', 'ruletableTable.component.css'],
   providers: [FcService]
 })
 export class RuletableComponent implements OnInit {
