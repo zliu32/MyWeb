@@ -31,4 +31,21 @@ public class RuleService {
         List<Rule> rules = ruleDao.findAll();
         return rules;
     }
+
+    @Transactional
+    public List<Rule> getPendingRuleByCreater(boolean status, String creater){
+        List<Rule> rules = ruleDao.findRuleByStatusAndCreater(status, creater);
+        return rules;
+    }
+
+    @Transactional
+    public List<Rule> getRuleWithStatus(boolean status){
+        List<Rule> rules = ruleDao.findRuleByStatus(status);
+        return rules;
+    }
+
+    @Transactional
+    public void deleteRule(Rule rule){
+        ruleDao.delete(rule);
+    }
 }

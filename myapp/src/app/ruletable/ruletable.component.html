@@ -9,10 +9,10 @@
         <th>Creation Date</th>
         <th>Description</th>
         <th>Score</th>
-        <th width="230">Comments</th>
+        <th width="230" *ngIf="showAccept">Action</th>
       </tr>
 
-      <tr *ngFor="let rule of ruleData">
+      <tr *ngFor="let rule of ruleData;let i = index">
         <td>
           <img src="http://lorempixel.com/100/100/people/1" alt="" />
         </td>
@@ -20,53 +20,74 @@
         <td>{{ rule.date }}</td>
         <td>{{ rule.description }}</td>
         <td>{{ rule.score }}</td>
-        <td>{{ rule.comment }}</td>
+        <td *ngIf="showAccept">
+          <button type="" (click)="deleteAcceptRow(i)">Delete</button>
+        </td>
       </tr>
 
     </table>
   </div>
 
   <div class="table-users">
-    <div class="header">Users
-      <input type="checkbox" id="modal" />
-      <label for="modal" class="modal-btn" style="font-size: 10px;float: right;">
+    <div class="header">Pending Rule
+      <label for="modal" class="modal-btn" style="font-size: 13px;float: right;">
         <i>+</i>
       </label>
-      <!-- <div class="modal-bg"></div> -->
-      <label for="modal" class="modal-bg"></label>
-      <div class="modal-content">
-        <header>
-          <h2 style="color:black">So This is a as</h2>
-        </header>
-        <article class="content" style="color: black">
-          <p>asd</p>
-        </article>
-        <footer>
-          <label for="modal" class="button success">Accept</label>
-          <label for="modal" class="button danger">Decline</label>
-        </footer>
-      </div>
+    </div>
+
+    <input type="checkbox" id="modal" />
+
+    <!-- <div class="modal-bg"></div> -->
+    <label for="modal" class="modal-bg"></label>
+    <div class="modal-content">
+      <header>
+        <h2 style="color:black">So This is a as</h2>
+      </header>
+      <article class="content" style="color: black">
+        <div class="blackboard">
+          <div class="form">
+            <p>
+              <label>Category: </label>
+              <input type="text" [(ngModel)]="categoryInput" />
+            </p>
+            <p>
+              <label>Score: </label>
+              <input type="number" [(ngModel)]="scoreInput" />
+            </p>
+            <p>
+              <label style="margin-top: -85px">Description: </label>
+              <textarea [(ngModel)]="descriptionInput"></textarea>
+            </p>
+          </div>
+        </div>
+      </article>
+      <footer>
+        <label for="modal" class="button success" (click)="acceptClicked()">Accept</label>
+        <label for="modal" class="button danger">Decline</label>
+      </footer>
     </div>
     <table>
       <tr class="pendingtr">
-        <th>Option</th>
-        <th>Default</th>
+        <th>Creater</th>
+        <th>Date</th>
         <th>Description</th>
+        <th>Score</th>
+        <th></th>
       </tr>
       <tbody class="pendingtbody">
-        <tr class="pendingtr">
+        <tr class="pendingtr" *ngFor="let pending of pendingData;let i=index">
           <td class="pendingtd">
-            <strong>showSpeed</strong>
+            <strong>{{ pending.creater }}</strong>
           </td>
-          <td class="pendingtd">15</td>
-          <td class="pendingtd">The speed of the show/reveal</td>
-        </tr>
-        <tr class="pendingtr">
           <td class="pendingtd">
-            <strong>showEasing</strong>
+            <strong>{{ pending.date }}</strong>
           </td>
-          <td class="pendingtd">'linear'</td>
-          <td class="pendingtd">The easing of the show/reveal</td>
+          <td class="pendingtd">{{ pending.description }}</td>
+          <td class="pendingtd">{{ pending.score }}</td>
+          <td class="pendingtd">
+            <button type="button" (click)="deleteRow(i)">Delete</button>
+            <button type="button" (click)="acceptRow(i)" *ngIf="showAccept">Accept</button>
+          </td>
         </tr>
       </tbody>
     </table>

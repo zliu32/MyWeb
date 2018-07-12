@@ -27,9 +27,8 @@ public class Rule {
     @Column(name = "creater")
     public String creater;
 
-    @Lob
-    @Column(name = "comment", length = 50000)
-    public String comment;
+    @Column(name = "status")
+    public boolean status;
 
     public int getId() {
         return id;
@@ -79,12 +78,12 @@ public class Rule {
         this.creater = creater;
     }
 
-    public String getComment() {
-        return comment;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     @Override
@@ -96,7 +95,7 @@ public class Rule {
                 ", category='" + category + '\'' +
                 ", score=" + score +
                 ", creater='" + creater + '\'' +
-                ", comment='" + comment + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
