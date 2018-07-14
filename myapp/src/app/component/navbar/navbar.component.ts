@@ -12,10 +12,12 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) { }
   @Input() currentTab:string;
+  public name:string;
 
   ngOnInit() {
     let div = document.getElementById(this.currentTab);
     div.className = "active";
+    this.name = localStorage.getItem("username");
   }
 
   logout() {

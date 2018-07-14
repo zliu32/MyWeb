@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.Entity.RequestInfo;
 import com.example.demo.Entity.ResponseInfo;
+import com.example.demo.Entity.RuleStatResponse;
 import com.example.demo.bean.RuleStat;
 import com.example.demo.service.RuleService;
 import com.example.demo.service.RuleStatService;
@@ -13,6 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/rulestat")
@@ -21,6 +26,9 @@ public class RuleStatController {
 
     @Autowired
     private RuleStatService ruleStatService;
+
+    @Autowired
+    private RuleService ruleService;
 
     final private long DAYINMILLIS = 86400000;
 
@@ -57,6 +65,69 @@ public class RuleStatController {
         Date date = new Date(millis + DAYINMILLIS * info.getDateOffset());
         String id = info.getUsername() + "-" + date.toString() + "-" + info.getRuleId();
         ResponseInfo result = ruleStatService.findRuleStat(id, info.getIndex());
+        return result;
+    }
+
+    @ApiOperation(value = "获取统计", notes = "获取统计", httpMethod = "POST")
+    @RequestMapping(value = "/fetchSummary", method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public List<RuleStatResponse> getRuleSummary(@RequestBody String username){
+        List<RuleStat> ruleStats = this.ruleStatService.findAll();
+        Map<Integer, Integer> summary = new HashMap<>();
+        for (RuleStat ruleStat: ruleStats){
+            if (username.equals(ruleStat.getUsername())) {
+                int ruleId = ruleStat.getRuleId();
+                int score = ruleStat.getScore();
+                if (summary.containsKey(ruleId)) {
+                    int temp = summary.get(ruleId) + score;
+                    summary.put(ruleId, temp);
+                } else {
+                    summary.put(ruleId, score);
+                }
+            }
+        }
+        List<RuleStatResponse> result = new ArrayList<>();
+        for (int id : summary.keySet()){
+            String name;
+            try {
+                name = this.ruleService.getRule(id).getCategory();
+            } catch (Exception e){
+                name = "Not Exist";
+            }
+            RuleStatResponse info = new RuleStatResponse();
+            info.setName(name);
+            info.setValue(summary.get(id));
+            result.add(info);
+        }
+        return result;
+    }
+
+    @ApiOperation(value = "获取统计1", notes = "获取统计1", httpMethod = "POST1")
+    @RequestMapping(value = "/fetchMonthly", method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public List<RuleStatResponse> stat(@RequestBody String username){
+        List<RuleStat> ruleStats = this.ruleStatService.findAll();
+        Map<String, Integer> summary = new HashMap<>();
+        for (RuleStat ruleStat: ruleStats){
+            if (username.equals(ruleStat.getUsername())) {
+                String[] pieces = ruleStat.getDate().split("-");
+                String date = pieces[0] + "-" + pieces[1] + "-" + pieces[2];
+                int score = ruleStat.getScore();
+                if (summary.containsKey(date)) {
+                    int temp = summary.get(date) + score;
+                    summary.put(date, temp);
+                } else {
+                    summary.put(date, score);
+                }
+            }
+        }
+        List<RuleStatResponse> result = new ArrayList<>();
+        result.add(new RuleStatResponse("start", 0));
+        for (String date: summary.keySet()){
+            result.add(new RuleStatResponse(date, summary.get(date)));
+        }
         return result;
     }
 }

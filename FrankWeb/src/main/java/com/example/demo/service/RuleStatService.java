@@ -1,18 +1,33 @@
 package com.example.demo.service;
 
 import com.example.demo.Entity.ResponseInfo;
+import com.example.demo.bean.Rule;
 import com.example.demo.bean.RuleStat;
 import com.example.demo.dao.RuleStatDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RuleStatService {
 
     @Autowired
     private RuleStatDao ruleStatDao;
+
+
+    @Transactional
+    public List<RuleStat> findAll(){
+        try {
+            List<RuleStat> rules = this.ruleStatDao.findAll();
+            return rules;
+        } catch (Exception e){
+            System.out.println(e.toString());
+            return new ArrayList<RuleStat>();
+        }
+    }
 
     @Transactional
     public boolean saveRuleStat(RuleStat ruleStat){

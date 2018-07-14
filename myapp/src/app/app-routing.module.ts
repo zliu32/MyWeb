@@ -5,6 +5,7 @@ import { ScoretableComponent } from './scoretable/scoretable.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { BlogComponent } from './blog/blog.component';
 import { RuletableComponent } from './ruletable/ruletable.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -32,6 +33,10 @@ export const routes: Routes = [
     {
         path: "rule",
         component: RuletableComponent
+    },
+    {
+        path: "dashboard",
+        component: DashboardComponent
     }
 ]
 

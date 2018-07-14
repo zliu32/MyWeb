@@ -3,6 +3,8 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +23,7 @@ import { CalendarComponent } from './blog/calendar/calendar.component';
 import { EditorComponent } from './blog/editor/editor.component';
 import { BlogBoxComponent } from './blog/blog-box/blog-box.component';
 import { RuletableComponent } from './ruletable/ruletable.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -41,7 +44,8 @@ import { RuletableComponent } from './ruletable/ruletable.component';
     BlogComponent,
     EditorComponent,
     BlogBoxComponent,
-    RuletableComponent
+    RuletableComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,7 @@ import { RuletableComponent } from './ruletable/ruletable.component';
     QuillEditorModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
+    NgxChartsModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],

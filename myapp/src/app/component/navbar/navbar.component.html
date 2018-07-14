@@ -10,8 +10,12 @@
               <ul>
                 <li id="home"><a [routerLink]="['/home']">Home</a></li>
                 <li id="score"><a [routerLink]="['/score']">Score</a></li>
+                <li id="rule"><a [routerLink]="['/rule']">Rule</a></li>
+                <li id="dashboard"><a [routerLink]="['/dashboard']">DashBoard</a></li>
                 <li id="blogs"><a [routerLink]="['/blogs']">Blogs</a></li>
                 <li id="logout"><a (click)="logout()">Log Out</a></li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><strong>Welcome, {{ name }}</strong></li>
               </ul>
             </div>
           </div>
