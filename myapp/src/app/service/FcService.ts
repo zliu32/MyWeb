@@ -12,7 +12,7 @@ export class FcService{
     request:RequestOptions;
 
     constructor(private http: Http,){
-        this.urlPrefix = global.urlGlobal;
+        this.urlPrefix = global.urlLocal;
         let headers = new Headers({'Content-Type': 'application/json'});
         this.request = new RequestOptions({headers:headers});
     }

@@ -104,7 +104,7 @@ public class RuleStatController {
     @RequestMapping(value = "/fetchMonthly", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public List<RuleStatResponse> stat(@RequestBody String username){
+    public List<RuleStatResponse> getStat(@RequestBody String username){
         List<RuleStat> ruleStats = this.ruleStatService.findAll();
         Map<String, Integer> summary = new HashMap<>();
         for (RuleStat ruleStat: ruleStats){
@@ -112,6 +112,9 @@ public class RuleStatController {
                 String[] pieces = ruleStat.getDate().split("-");
                 String date = pieces[0] + "-" + pieces[1] + "-" + pieces[2];
                 int score = ruleStat.getScore();
+                if (date.equals("2018-07-15")){
+                    score = score / 63;
+                }
                 if (summary.containsKey(date)) {
                     int temp = summary.get(date) + score;
                     summary.put(date, temp);
