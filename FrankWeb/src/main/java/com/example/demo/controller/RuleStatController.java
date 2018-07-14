@@ -74,31 +74,28 @@ public class RuleStatController {
     @CrossOrigin
     public List<RuleStatResponse> getRuleSummary(@RequestBody String username){
         List<RuleStat> ruleStats = this.ruleStatService.findAll();
-        Map<Integer, Integer> summary = new HashMap<>();
+        Map<String, Integer> summary = new HashMap<>();
         for (RuleStat ruleStat: ruleStats){
             if (username.equals(ruleStat.getUsername())) {
                 int ruleId = ruleStat.getRuleId();
                 int score = ruleStat.getScore();
-                if (summary.containsKey(ruleId)) {
-                    int temp = summary.get(ruleId) + score;
-                    summary.put(ruleId, temp);
+                String name;
+                try {
+                    name = this.ruleService.getRule(ruleId).getCategory();
+                } catch (Exception e){
+                    name = "Not Exist";
+                }
+                if (summary.containsKey(name)) {
+                    int temp = summary.get(name) + score;
+                    summary.put(name, temp);
                 } else {
-                    summary.put(ruleId, score);
+                    summary.put(name, score);
                 }
             }
         }
         List<RuleStatResponse> result = new ArrayList<>();
-        for (int id : summary.keySet()){
-            String name;
-            try {
-                name = this.ruleService.getRule(id).getCategory();
-            } catch (Exception e){
-                name = "Not Exist";
-            }
-            RuleStatResponse info = new RuleStatResponse();
-            info.setName(name);
-            info.setValue(summary.get(id));
-            result.add(info);
+        for (String name : summary.keySet()){
+            result.add(new RuleStatResponse(name, summary.get(name)));
         }
         return result;
     }

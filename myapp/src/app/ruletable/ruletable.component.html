@@ -9,6 +9,7 @@
     <!--    <th></th> -->
         <th>Creater</th>
         <th>Creation Date</th>
+        <th>Category</th>
         <th>Description</th>
         <th>Score</th>
         <th width="230" *ngIf="showAccept">Action</th>
@@ -23,6 +24,7 @@
           </td> --> 
           <td><strong>{{ rule.creater }}</strong></td>
           <td>{{ rule.date }}</td>
+          <td>{{ rule.category }}</td>
           <td>{{ rule.description }}</td>
           <td>{{ rule.score }}</td>
           <td *ngIf="showAccept">
@@ -78,6 +80,7 @@
       <tr class="pendingtr">
         <th>Creater</th>
         <th>Date</th>
+        <th>Category</th>
         <th>Description</th>
         <th>Score</th>
         <th></th>
@@ -93,6 +96,7 @@
           <td class="pendingtd">
             <strong>{{ pending.date }}</strong>
           </td>
+          <td class="pendingtd">{{ pending.category }}</td>
           <td class="pendingtd">{{ pending.description }}</td>
           <td class="pendingtd">{{ pending.score }}</td>
           <td class="pendingtd">
