@@ -1,3 +1,12 @@
+<div class="onoffswitch">
+  <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+  <label class="onoffswitch-label" for="myonoffswitch">
+      <span class="onoffswitch-inner" [attr.dataBefore]="testtest" [attr.dataAfter]="testtest"></span>
+      <span class="onoffswitch-switch"></span>
+  </label>
+</div>
+
+
 <app-navbar [currentTab]="currentTab"></app-navbar>
 <div class="page">
   <slideshow #slidershow [height]="height" [minHeight]="'650px'" [autoPlay]="true" [showArrows]="true" [imageUrls]="slideImageUrlArray"

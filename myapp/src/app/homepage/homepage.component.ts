@@ -21,6 +21,7 @@ export class HomepageComponent implements OnInit {
   private imageUrlPrefix = "./assets/images/";
   private currentTab: string;
   public username: string;
+  public testtest: string="zxc";
 
   constructor(private router: Router,
     private fcService: FcService) { }
