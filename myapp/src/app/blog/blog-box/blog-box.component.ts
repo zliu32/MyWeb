@@ -11,9 +11,9 @@ import { FcService } from '../../service/FcService';
 })
 export class BlogBoxComponent implements OnInit, DoCheck {
 
-  private context: string;
-  private clickCount: number;
-  private oldDate:string;
+  public context: string;
+  public clickCount: number;
+  public oldDate:string;
   constructor(private fcService:FcService) { }
 
   ngOnInit() {

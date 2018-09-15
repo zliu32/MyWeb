@@ -20,7 +20,7 @@ export class BlogComponent implements OnInit, DoCheck {
   public showEditor: boolean;
   public context: string;
   public currentTab: string;
-  private oldDate:string;
+  public oldDate:string;
 
   constructor(private router:Router) { }
 

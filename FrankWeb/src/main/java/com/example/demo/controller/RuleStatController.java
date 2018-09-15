@@ -118,7 +118,7 @@ public class RuleStatController {
                 } else {
                     summary.put(date, score);
                 }
-            }
+            }   
         }
         List<RuleStatResponse> result = new ArrayList<>();
         result.add(new RuleStatResponse("start", 0));

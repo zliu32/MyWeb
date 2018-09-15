@@ -14,17 +14,18 @@ import { ruleInfo } from '../entity/userInterface';
 })
 export class ScoretableComponent implements OnInit {
 
-  private tags: tagInformation[];
-  private headContext: string;
-  private isShowPop: boolean;
-  private popContext: string;
-  private currentTab:string;
+  public tags: tagInformation[];
+  public headContext: string;
+  public isShowPop: boolean;
+  public popContext: string;
+  public currentTab: string;
 
   constructor(private router: Router,
     private fcService: FcService) { }
 
+
   ngOnInit() {
-    let username =localStorage.getItem("username");
+    let username = localStorage.getItem("username");
     if (username == null) {
       this.router.navigate(["login"]);
     }
@@ -40,13 +41,19 @@ export class ScoretableComponent implements OnInit {
           name: res[i]["category"],
           description: res[i]["description"],
           score: res[i]["score"],
-          selected:false,
+          selected: false,
           id: res[i]["id"]
         }
-        this.tags.push(temp);
+        if (temp.id != 999) {
+          this.tags.push(temp);
+        }
       }
-      this.tags.sort((n1, n2)=> n1.name > n2.name ? 1 : -1);
     })
+  }
+
+  handleClick() {
+    let ele: any = document.getElementById("customDetail");
+    console.log(ele.value);
   }
 
   selectTag(tag: tagInformation) {
@@ -61,11 +68,11 @@ export class ScoretableComponent implements OnInit {
     }
   }
 
-  submitSelected(){
-    var tempScore:number;
+  submitSelected() {
+    var tempScore: number;
     this.isShowPop = true;
-    for (var i = 0; i < this.tags.length; i ++){
-      if (!this.tags[i].selected){
+    for (var i = 0; i < this.tags.length; i++) {
+      if (!this.tags[i].selected) {
         tempScore = 0;
       } else {
         tempScore = this.tags[i].score;
@@ -76,13 +83,36 @@ export class ScoretableComponent implements OnInit {
         score: tempScore,
       }
       this.fcService.sendPost(tempRuleInfo, "/api/rulestat/save").subscribe(res => {
-        if (res){
+        if (res) {
           this.popContext = "Successfully update";
         } else {
           this.popContext = "Failed update";
         }
-      }) 
+      })
     }
+    this.handleCustom();
+  }
+
+  handleCustom() {
+    let scoreEle: any = document.getElementById("customScore");
+    let detailEle: any = document.getElementById("customScore");
+    let score = scoreEle.value;
+    let detail = detailEle.value;
+    if (score.length != 0 && detail.length != 0) {
+      let tempInfo: ruleInfo = {
+        ruleId: 999,
+        username: localStorage.getItem("username"),
+        score: score
+      }
+      this.fcService.sendPost(tempInfo, "/api/rulestat/save").subscribe(res => {
+        if (res) {
+          this.popContext = "Successfully update";
+        } else {
+          this.popContext = "Failed update";
+        }
+      })
+    }
+
   }
 
   closePopup() {

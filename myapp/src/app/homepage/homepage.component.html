@@ -9,7 +9,7 @@
 
 <app-navbar [currentTab]="currentTab"></app-navbar>
 <div class="page">
-  <slideshow #slidershow [height]="height" [minHeight]="'650px'" [autoPlay]="true" [showArrows]="true" [imageUrls]="slideImageUrlArray"
+  <slideshow #slidershow [minHeight]="'650px'" [autoPlay]="true" [showArrows]="true" [imageUrls]="slideImageUrlArray"
     [lazyLoad]="slideImageUrlArray?.length > 1" [autoPlayWaitForLazyLoad]="true" [showDots]="true" [showCaptions]="true">
   </slideshow>
 

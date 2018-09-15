@@ -10,12 +10,12 @@ import { FcService } from '../service/FcService';
 export class RuletableComponent implements OnInit {
 
   public ruleData: any[] = [];
-  private categoryInput: string;
-  private scoreInput: number;
-  private descriptionInput: string;
+  public categoryInput: string;
+  public scoreInput: number;
+  public descriptionInput: string;
   public pendingData: any[] = [];
-  private requestPending: any;
-  private showAccept: boolean = false;
+  public requestPending: any;
+  public showAccept: boolean = false;
   public currentTab: string;
   public headContext: string;
   public isPendingDataExist: boolean;

@@ -10,7 +10,7 @@ import { SELECTEDATE } from '../../globals';
 export class CalendarComponent implements OnInit, DoCheck {
 
   constructor() { }
-  private selectedMoment: Date = new Date();
+  public selectedMoment: Date = new Date();
 
   ngOnInit() {
   }

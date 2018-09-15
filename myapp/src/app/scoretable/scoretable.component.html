@@ -8,11 +8,11 @@
 <body>
   <a class="btn btn-red" (click)="submitSelected()">I am done!</a>
   <div class="hover_bkgr_fricc" *ngIf="isShowPop" (click)="closePopup()">
-      <span class="helper"></span>
-      <div>
-          <div class="popupCloseButton" (click)="closePopup()">X</div>
-          <p>{{ popContext }}</p>
-      </div>
+    <span class="helper"></span>
+    <div>
+      <div class="popupCloseButton" (click)="closePopup()">X</div>
+      <p>{{ popContext }}</p>
+    </div>
   </div>
   <div id="pricing-table" class="clear">
     <div class="plan" *ngFor="let tag of tags" [class.most-popular]="tag.focus" (mouseout)="tag.focus=false" (mouseover)="tag.focus=true">
@@ -26,6 +26,25 @@
         </li>
       </ul>
     </div>
+  </div>
+  <div style="text-align: center">
+    <h2>自定义规则</h2>
+
+    <form style="width: 400px;position: relative;margin: 0 auto">
+      <div class="group">
+        <input type="text" id="customDetail" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Detail</label>
+      </div>
+
+      <div class="group">
+        <input type="text" id="customScore" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Score</label>
+      </div>
+    </form>
   </div>
 </body>
 <app-footer></app-footer>

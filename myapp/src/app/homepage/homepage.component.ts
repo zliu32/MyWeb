@@ -16,15 +16,15 @@ import { FcService } from '../service/FcService';
 })
 export class HomepageComponent implements OnInit {
 
-  private blogRowOne: string[];
-  private blogRowTwo: string[];
-  private imageUrlPrefix = "./assets/images/";
-  private currentTab: string;
+  public blogRowOne: string[];
+  public blogRowTwo: string[];
+  public imageUrlPrefix = "./assets/images/";
+  public currentTab: string;
   public username: string;
   public testtest: string="zxc";
 
-  constructor(private router: Router,
-    private fcService: FcService) { }
+  constructor(public router: Router,
+    public fcService: FcService) { }
 
   public slideImageUrlArray: any;
   public blogDate: any[] = [];
